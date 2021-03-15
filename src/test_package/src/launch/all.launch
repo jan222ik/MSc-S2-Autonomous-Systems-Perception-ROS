@@ -1,0 +1,6 @@
+<launch>
+    <node pkg="turtlesim" name="turtle1" type="turtlesim_node" output="screen"/>
+    <node pkg="test_package" name="control" type="turtleMoverPublisher.py"/>
+    <node pkg="test_package" name="aggregate" type="CollectAndAggregate.py" output="screen"/>
+    <node pkg="test_package" name="logger" type="LoggerNode.py" output="screen"/>
+</launch>
