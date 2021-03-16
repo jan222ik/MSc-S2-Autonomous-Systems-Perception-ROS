@@ -28,8 +28,8 @@ class TurtleMover:
 
     def publish(self):
         twist = Twist()
-        twist.linear.x = 1
-        twist.angular.z = 2
+        twist.linear.x = rospy.get_param("twist_turtle_linear_x", 1.0)
+        twist.angular.z = rospy.get_param("twist_turtle_angular_z", 2.0)
         rospy.loginfo(twist)
         self.pub.publish(twist)
         self.rate.sleep()

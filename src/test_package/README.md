@@ -19,6 +19,17 @@ Controller for the turtle from the turtlesim. The movement of the turtle is achi
 
 This control can be stopped and started via a Service ``StartStopService.py``. The default for the node is started.
 
+The turtle is controlled by the values present on the parameter server.
+To change the parameters use:
+```shell
+rosparam set twist_turtle_angular_z 10.75
+```
+Higher values makes turtle spin faster.
+Or for the turtles speed use:
+```shell
+rosparam set twist_turtle_linear_x 5
+```
+
 ## Messages:
 ### CustAggregatedMsg.msg:
 Encapsulates the messages provided by the turtlesim node.
@@ -36,6 +47,9 @@ catkin_make
 ```
 
 ### Launch file - all.launch:
+Sets:
+- param file twistTurtle.yaml
+
 Starts:
 - node ``turtlesim turtlesim_node``
 - node ``test_package turtleMoverPublisher.py``
