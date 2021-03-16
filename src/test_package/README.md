@@ -2,6 +2,21 @@
 
 Learning about ROS.
 
+## Clone:
+This shell script copies the files of this package to your PC and removes the repository later.
+Be in Working Dir: ``~/catkin_ws/src``
+```shell
+mkdir test_package
+mkdir MSc-S2-Autonomous-Systems-Perception-ROS
+git clone https://github.com/jan222ik/MSc-S2-Autonomous-Systems-Perception-ROS --no-checkout MSc-S2-Autonomous-Systems-Perception-ROS --depth 1
+cd MSc-S2-Autonomous-Systems-Perception-ROS
+git sparse-checkout init --cone
+git sparse-checkout set src/test_package
+cp -R src/test_package/* ../test_package
+cd ..
+rm -rf MSc-S2-Autonomous-Systems-Perception-ROS
+```
+
 ## Nodes:
 ### CollectAndAggregate.py
 Subscribes to the desired topics of the turtlesim_node.
