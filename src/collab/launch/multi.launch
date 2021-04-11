@@ -15,7 +15,7 @@
             <arg name="init_pose" value="-x 1 -y 1 -z 0"/>
         </include>
         <param name="model" value="$(arg model)"/>
-        <node pkg="turtlebot3_teleop" type="turtlebot3_teleop_key" name="turtlebot3_teleop_keyboard"  output="screen"/>
+        <node pkg="turtlebot3_teleop" type="turtlebot3_teleop_key" name="turtlebot3_teleop_keyboard"  output="screen" launch-prefix="gnome-terminal -e"/>
     </group>
     <!-- Turtle 2 -->
     <group ns="turtle2">
@@ -27,5 +27,7 @@
             <arg name="robot_name" value="t2"/>
             <arg name="init_pose" value="-x -1 -y 1 -z 0"/>
         </include>
+        <param name="model" value="$(arg model2)"/>
+        <node pkg="turtlebot3_teleop" type="turtlebot3_teleop_key" name="turtlebot3_teleop_keyboard"  output="screen" launch-prefix="gnome-terminal -e"/>
     </group>
 </launch>
