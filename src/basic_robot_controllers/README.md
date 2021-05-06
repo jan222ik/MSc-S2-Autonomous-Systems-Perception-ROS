@@ -1,6 +1,6 @@
-# MSc-S2-Autonomous-Systems-Perception-ROS - test_package
+# MSc-S2-Autonomous-Systems-Perception-ROS - basic_robot_controllers
 
-Package with first controllers utalizing sensors and motors.
+Package with first controllers utilizing sensors and motors.
 
 ## Clone:
 This shell script copies the files of this package to your PC and removes the repository later.
