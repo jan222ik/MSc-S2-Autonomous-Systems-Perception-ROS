@@ -8,7 +8,6 @@ from tf import transformations
 
 import math
 
-
 class WallFollower:
 
     def __init__(self):
@@ -45,6 +44,8 @@ class WallFollower:
             twist = self.turnLeft()
         elif self.state == 2:
             twist = self.followWall()
+        elif self.state == 3:
+            twist = self.turnRight()
             pass
         else:
             rospy.logerr('Unknown state!')
@@ -60,16 +61,21 @@ class WallFollower:
         l = self.laserData['l']
         fl = self.laserData['fl']
 
-        d = 0.3
+        d = 0.35
         state_description = ""
 
         if f < d:
-            self.state = 1
-        elif fr < d:
+            if f > r < d:
+                self.state = 2
+            else:
+                self.state = 1
+        elif fr == 10 or fr < d:
             if r < d:
                 self.state = 1
             else:
-                self.state = 2
+                self.state  = 2
+        elif r < 5 * d:
+            self.state = 3
         elif f > d and fr > d and r > d:
             self.state = 0
         else:
@@ -79,18 +85,24 @@ class WallFollower:
 
     def findWall(self):
         twist = Twist()
-        twist.linear.x = 0.3
+        twist.linear.x = 0.2
         return twist
 
     def turnLeft(self):
         twist = Twist()
-        twist.angular.z = 0.3
+        twist.angular.z = 0.2
+        return twist
+
+    def turnRight(self):
+        twist = Twist()
+        twist.angular.z = -0.2
+        twist.linear.x = 0.2
         return twist
 
     def followWall(self):
         twist = Twist()
-        twist.linear.x = 0.5
-        twist.angular.z = 0.3
+        twist.linear.x = 0.2
+        twist.angular.z = -0.2
         return twist
 
 
