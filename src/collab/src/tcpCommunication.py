@@ -56,28 +56,31 @@ if __name__ == '__main__':
     else:
         rospy.loginfo("Args" + str(sys.argv))
         tries = 10
-        while tries > 0:
-            tries -= 1
-            try:
-                it = None
-                if sys.argv[1] == '-s':
-                    rospy.init_node("tcp_server", log_level=rospy.DEBUG)
-                    it = ClientServer(
-                        port=port,
-                        isServer=True,
-                        turtle=sys.argv[2]
-                    )
-                else:
-                    rospy.init_node("tcp_client", log_level=rospy.DEBUG)
-                    it = ClientServer(
-                        port=port,
-                        isServer=False,
-                        turtle=sys.argv[2]
-                    )
+        it = None
+        try:
+            while tries > 0:
+                tries -= 1
                 try:
+                    if sys.argv[1] == '-s':
+                        rospy.init_node("tcp_server", log_level=rospy.DEBUG, anonymous=True)
+                        it = ClientServer(
+                            port=port,
+                            isServer=True,
+                            turtle=sys.argv[2]
+                        )
+                    else:
+                        rospy.init_node("tcp_client", log_level=rospy.DEBUG, anonymous=True)
+                        it = ClientServer(
+                            port=port,
+                            isServer=False,
+                            turtle=sys.argv[2]
+                        )
                     rospy.spin()
-                except rospy.ROSInterruptException:
+                except ConnectionRefusedError:
                     pass
-            finally:
-                it.close()
-            time.sleep(10000)
+                finally:
+                    it.close()
+                time.sleep(10000)
+        except rospy.ROSInterruptException:
+            it.close()
+            pass

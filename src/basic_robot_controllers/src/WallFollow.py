@@ -1,6 +1,5 @@
 #! /usr/bin/env python
 
-# import ros stuff
 import rospy
 from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Twist
