@@ -1,0 +1,35 @@
+<launch>
+    <!-- Set Default Robot Model to burger -->
+    <arg name="model" value="burger"/>
+    <arg name="model2" value="burger"/>
+    <!-- Simulation Environment -->
+    <include file="$(find collab)/launch/emptyWorld.launch"/>
+    <!-- Turtle 1 -->
+    <group ns="turtle1">
+        <param name="tf_prefix" value="turtle1_tf"/>
+        <param name="robot_description"
+               command="$(find xacro)/xacro $(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro"/>
+        <include file="$(find collab)/launch/single.launch">
+            <arg name="model" value="$(arg model)"/>
+            <arg name="robot_name" value="t1"/>
+            <arg name="init_pose" value="-x 1 -y 1 -z 0"/>
+            <arg name="tcpFlag" value="s"/>
+        </include>
+        <param name="model" value="$(arg model)"/>
+        <node pkg="turtlebot3_teleop" type="turtlebot3_teleop_key" name="turtlebot3_teleop_keyboard"  output="screen" launch-prefix="gnome-terminal -e"/>
+    </group>
+    <!-- Turtle 2 -->
+    <group ns="turtle2">
+        <param name="tf_prefix" value="turtle2_tf"/>
+        <param name="robot_description"
+               command="$(find xacro)/xacro $(find turtlebot3_description)/urdf/turtlebot3_$(arg model2).urdf.xacro"/>
+        <include file="$(find collab)/launch/single.launch">
+            <arg name="model" value="$(arg model2)"/>
+            <arg name="robot_name" value="t2"/>
+            <arg name="init_pose" value="-x -1 -y 1 -z 0"/>
+            <arg name="tcpFlag" value="c"/>
+        </include>
+        <param name="model" value="$(arg model2)"/>
+        <node pkg="turtlebot3_teleop" type="turtlebot3_teleop_key" name="turtlebot3_teleop_keyboard"  output="screen" launch-prefix="gnome-terminal -e"/>
+    </group>
+</launch>
