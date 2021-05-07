@@ -53,7 +53,7 @@ class ClientServer:
                     rospy.loginfo("From Server - Incoming: %s" % res)
                     self.awaitRes = False
         except BrokenPipeError as e:
-            rospy.logerr("Broken Pipe at Client 2")
+            rospy.logerr("Broken Pipe at Client")
             self.awaitRes = False
             pass
         time.sleep(1)

@@ -17,8 +17,18 @@ cd ..
 rm -rf MSc-S2-Autonomous-Systems-Perception-ROS
 ```
 
-## Task 2: WallFollow.py
+## Task 2: WallFollow\<Version>.py
 Simple WallFollower node. The controller will follow a wall alongside its right side.
+
+Both versions are limited in their capability to follow a wall like the outside of the character T.
+
+### Version 1:
+Uses different states to determine the applied twist to the robot.
+
+### Version 2:
+Uses the angle of the nearest obstacle, it will be aligned to the right of the robot.
+Is more reliable than Version 1.
+
 
 Start:
 1. World:
@@ -27,11 +37,14 @@ export TURTLEBOT3_MODEL=burger
 export SVGA_VGPU10=0
 roslaunch turtlebot3_gazebo turtlebot3_stage_1.launch
 ```
-2. WallFollow.py node
+2. WallFollow\<Version>.py node
 ```shell
 export TURTLEBOT3_MODEL=burger
 export SVGA_VGPU10=0
-rosrun basic_robot_controllers WallFollow.py
+# Choose one of:
+rosrun basic_robot_controllers WallFollowV2.py
+
+rosrun basic_robot_controllers WallFollowV1.py
 ```
 
 ## Task 3: DriveToNearestObstacle.py
@@ -40,7 +53,7 @@ To determine the direction to go the LaserScan sensor is used, the index of the 
 be used directly as the angle towards the nearest obstacle.
 
 The launch file ``driveTowards.launch`` can be used to start the world ``world_with_obstacle.world`` which contains
-an obstacle and a roboter.
+an obstacle and a robot.
 
 Start:
 1. World:

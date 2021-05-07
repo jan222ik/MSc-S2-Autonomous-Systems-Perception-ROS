@@ -1,6 +1,6 @@
 # MSc-S2-Autonomous-Systems-Perception-ROS - collab
 
-Package with launch files to start multiple roboter at once and establish communication between them via TCP.
+Package with launch files to start multiple robots at once and establish communication between them via TCP.
 
 ## Clone:
 This shell script copies the files of this package to your PC and removes the repository later.
@@ -22,18 +22,18 @@ rm -rf MSc-S2-Autonomous-Systems-Perception-ROS
 ### 1. Environment - emptyWorld.launch
 Loads an empty world inside Gazebo.
 
-### 2. Roboter - single.launch
-Launch file for a single roboter. 
-It spawns the roboter and creates a TCP-ClientServer node for communication.
-It takes arguments for the roboter:
+### 2. Robot - single.launch
+Launch file for a single robot. 
+It spawns the robot and creates a TCP-ClientServer node for communication.
+It takes arguments for the robot:
   - robot_name: Name of the robot
   - init_pose: Initial Pose in shape ``"-x -1 -y 1 -z 0"``
   - model: Name of turtlebot
   - tcpFlag: Determines if the robot is a tcp server or a tcp client.
 The launch file also expects the param robot_description to be set.
 
-### 3. Two Roboter combined - multi.launch
-Starts two roboter in different namespaces, defines args and params required by single.launch and stats
+### 3. Two Robots combined - multi.launch
+Starts two robots in different namespaces, defines args and params required by single.launch and stats
 a terminal with a teleop node for each of the turtles.
 
 **⚠ WARNING - Teleop Terminal**: The used terminal is started with ``gnome-terminal -e``; thus the executing
