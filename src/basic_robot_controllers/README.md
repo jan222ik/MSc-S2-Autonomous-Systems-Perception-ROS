@@ -16,6 +16,23 @@ cp -R src/basic_robot_controllers/* ../basic_robot_controllers
 cd ..
 rm -rf MSc-S2-Autonomous-Systems-Perception-ROS
 ```
+## Exercise Image: CamVisualisation.py
+
+Node visualises the provided raw image (Topic: "/camera/rgb/image_raw") in a window after converting
+it with OpenCV via a bridge.
+Two different examples are displayed. 
+Firstly, the original image and secondly, a greyscale version of the image.
+The node exports the images again as a message on different topics ("image_cv" and "image_cv_grey").
+
+Start:
+```shell
+export SVGA_VGPU10=0
+roslaunch roslaunch basic_robot_controllers imageVis.launch
+```
+This launch file will initiate the given example world and spawn a waffle robot.
+Afterwards the camera node is started.
+Finally, a controller that rotates the roboter is started. 
+With the rotation enabled it is easier to assure the image is updated and all colors can be seen.
 
 ## Task 2: WallFollow\<Version>.py
 Simple WallFollower node. The controller will follow a wall alongside its right side.
