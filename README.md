@@ -13,6 +13,11 @@ Exercise 2:
   - Package name: basic_robot_controllers
   - Documentation: [Read me!](src/basic_robot_controllers/README.md)
 
+Exercise Image/Camera Visualisation:
+  - Short Description: Camera Visualisation (Original and Greyscale) with OpenCV bridge
+  - Package name: basic_robot_controllers
+  - Documentation: [Read me!](src/basic_robot_controllers/README.md)
+
 Exercise 3:
   - Short Description: Handling of multiple robots with namespaces, and creation of a TCP communication between the robots
   - Package name: collab
